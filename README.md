@@ -2,18 +2,24 @@
 
 ## Coordinator firmware
     1.The firmware contains partition_cfg_2M.toml,R3_706_dongle.bin and bl_factory_params_IoTKitA_32M.dts.
+    2.Beta: The firmware contains partition_cfg_2M.toml,R3_706_dongle_vx.xx.xx.bin and bl_factory_params_IoTKitA_32M.dts.(new burning tool with 1.9.0)
+## Router firmware(Beta)
+    1.Beta: The firmware contains partition_cfg_2M.toml,R3_706_dongle.bin and bl_factory_params_IoTKitA_32M.dts.(old burning tool)
 ## Notice
-    1.Please refer to the doc in the Doc-Flash-Guide directory for flash burning guidance(If you are using Ubuntu or Mac OS, please use flash tool with 1.8.4 and pay attention to selecting the port  and pressing pin to power on).
+    1.Please refer to the doc in the Doc-Flash-Guide directory for flash burning guidance(If you are using Ubuntu or Mac OS, please use flash tool with 1.8.4 or 1.9.0 and pay attention to selecting the port  and pressing pin to power on).
+    2.Please note that the beta version of Coordinatior firmware requires a burning tool of 1.9.0, while others require a burning tool of 1.8.4.
 
 ## Function Description
     1. Support smart home platforms in Home Assistant, like Zigbee Home Automation and Zigbee2MQTT.
     2. Base on BL706.
     3. USB connected adapter.
+    4. Router(Beta).
 
 ## Instructions for use
     BL706 based USB connected.
     1. Work with Zigbee Home Automation: https://www.home-assistant.io/integrations/zha
     2. Work with Zigbee2MQTT: https://www.zigbee2mqtt.io/guide/getting-started/
+    3. Router device(Beta,need to join the network).
 
 ## Buy
     1.link:
