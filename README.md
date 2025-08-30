@@ -1,23 +1,85 @@
-# ThireaReality Zigbee 3.0 USB Dongle
+# ThirdReality Zigbee 3.0 USB Dongle
+
+## Introduction
+---
+The ThirdReality Zigbee 3.0 USB Dongle is based on the Bouffalo Lab **BL706** chip.  
+- For firmware versions **v1.0 and above**, the dongle uses the **BLZ protocol** (recommended).  
+- For firmware versions **below v1.0**, the dongle uses the **Zigate protocol** (legacy).  
+
+## Firmware Versions
+---
+### Coordinator Firmware
+Starting from **v1.0 and above**, the dongle **migrates to the BLZ protocol**.  
+- Recommended for integration with **Zigbee2MQTT** and **Home Assistant**.  
+- Contained `partition_cfg_2M.toml`, `R3_706_dongle.bin`, and `bl_factory_params_IoTKitA_32M.dts`.  
+- Latest release: `v1.00.07`.  
+
+#### Legacy (Firmware < v1.0)
+- Used the **Zigate protocol**.  
+- Contained `partition_cfg_2M.toml`, `R3_706_dongle.bin`, and `bl_factory_params_IoTKitA_32M.dts`.  
+- Latest legacy release: `v0.00.21`.  
+
+### Router Firmware (Beta)
+- Contains `partition_cfg_2M.toml`, `R3_706_dongle.bin`, and `bl_factory_params_IoTKitA_32M.dts`.  
+- Latest: `v0.00.16 (Beta)`.  
 
 ## Notice
-    1.Please refer to the doc in the Doc-Flash-Guide directory for flash burning guidance(If you are using Ubuntu or Mac OS, please use flash tool with 1.8.4 or 1.9.0 and pay attention to selecting the port  and pressing pin to power on).
-    2.Please note that the beta version of Coordinatior firmware requires a burning tool of 1.9.0, while others require a burning tool of 1.8.4.
+---
+1. Refer to the documentation in the `Doc-Flash-Guide` directory for flashing instructions.  
+   - On **Ubuntu** or **Mac OS**, use flashing tool **1.9.0**, ensure the correct port is selected, and press the pin hole while powering on.  
 
-## Function Description
-    1. Support smart home platforms in Home Assistant, like Zigbee Home Automation and Zigbee2MQTT.
-    2. Base on BL706.
-    3. USB connected adapter.
-    4. Router(Beta).
+## Protocol
+---
+- **BLZ protocol** (firmware ≥ v1.0): recommended and actively supported.  
+BLZ protocol documentation: [link here](<https://github.com/bouffalolab/zigpy-blz/blob/main/docs/UG100%20Bouffalo%20Lab%20Zigbee%20(BLZ)%20Protocol.pdf>).  
+- **Zigate protocol** (firmware < v1.0): legacy, no longer recommended.  
 
-## Instructions for use
-    BL706 based USB connected.
-    1. Work with Zigbee Home Automation: https://www.home-assistant.io/integrations/zha
-    2. Work with Zigbee2MQTT: https://www.zigbee2mqtt.io/guide/getting-started/
-    3. Router device(Beta,need to join the network).
+### Host Examples
+
+#### zigpy-blz
+- [zigpy-blz adapter](https://github.com/bouffalolab/zigpy-blz/tree/main#)  
+- A **zigpy-based adapter** that allows BLZ protocol dongles to work with Home Assistant (ZHA).  
+
+#### Custom zigbee-herdsman with BLZ
+- [fangzheli/zigbee-herdsman](https://github.com/fangzheli/zigbee-herdsman)  
+- A **zigbee-herdsman fork** with BLZ protocol support, enabling integration with **Zigbee2MQTT**.  
+
+## Contribution
+---
+Right now, since **BLZ protocol support has not yet been merged** into the main branches of **ZHA** (Home Assistant) and **Zigbee2MQTT**, using it requires extra steps.  
+
+The maintainers of ZHA and Zigbee2MQTT have indicated that **greater popularity and adoption of BLZ** will help drive inclusion into the upstream projects.  
+
+👉 We encourage the community to:
+- Try using the dongle with BLZ.  
+- Share your feedback and experiences.  
+- Join the discussion with project maintainers such as **@puddly**, **@Adminiuga** (Home Assistant), and **@Koenkk** (Zigbee2MQTT), so that BLZ protocol support can move closer to mainline adoption.  
+
+Your contributions and visibility will help bring BLZ into the official ecosystem faster!  
+
+## How To
+---
+### Home Assistant
+
+#### 1. HA OS
+Directly use the dongle with **Home Assistant OS** and the overrided ZHA integration. 
+- See [haos_custom_zha_blz](<https://github.com/bouffalolab/haos_custom_zha_blz/tree/main>) for detail.
+
+#### 2. HA Core
+Use the dongle in a **Home Assistant Core** environment.
+- Setup documentation: [Home_Assistant_Core_BLZ_Radios_Integration_Guide](<https://github.com/thirdreality/ThirdReality-Zigbee-3.0-USB-dongle/blob/40b5c9430e3dfad4d3d63e9597c31424e87d91e9/Howto/Home_Assistant_Core_BLZ_Radios_Integration_Guide.pdf>)  
+
+#### 3. Zigbee2MQTT in Home Assistant
+When running firmware **v1.0 and above** (BLZ protocol), Zigbee2MQTT can be added as an add-on in HA.  
+- Setup documentation: [Using Zigbee2MQTT in HA with BLZ Guide](<https://github.com/thirdreality/ThirdReality-Zigbee-3.0-USB-dongle/blob/40b5c9430e3dfad4d3d63e9597c31424e87d91e9/Howto/Zigbee2MQTT_BLZ_HA_Guide.pdf>)  
+
+### Zigbee2MQTT
+For standalone use outside HA, the dongle (firmware ≥ v1.0, BLZ protocol) can be connected directly to Zigbee2MQTT.  
+- Follow the setup guide: [Building and Configuring Zigbee2mqtt with BLZ Protocol Support](<https://github.com/thirdreality/ThirdReality-Zigbee-3.0-USB-dongle/blob/40b5c9430e3dfad4d3d63e9597c31424e87d91e9/Howto/Building%20and%20Configuring%20Zigbee2mqtt%20with%20BLZ%20Protocol%20Support.pdf>)  
 
 ## Buy
-    1.link:
+---
+Amazon link: https://a.co/d/a319nqE
 
 ## FCC Statement
 This device complies with part 15 of the FCC rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference   received,   including   interference   that   may   cause undesired operation. 
@@ -32,7 +94,7 @@ NOTE: This equipment has been tested and found to comply with the li
 • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.  
 ‐ Consult the dealer or an experienced radio/TV technician for help important announcement 
 
-Important Note:
+# Important Note:
 ## Radiation Exposure Statement
 This equipment complies with FCC radiation exposure limits set forth for an uncontrolled environment. This transmitter must not be co-located or operating in conjunction with any other antenna or transmitter.
 
