@@ -1,9 +1,5 @@
 # ThireaReality Zigbee 3.0 USB Dongle
 
-## Coordinator firmware
-    1.The firmware contains partition_cfg_2M.toml,R3_706_dongle.bin and bl_factory_params_IoTKitA_32M.dts.(latest:v0.00.16,burning with 1.8.4 burning tool)
-## Router firmware(Beta)
-    1.Beta: The firmware contains partition_cfg_2M.toml,R3_706_dongle.bin and bl_factory_params_IoTKitA_32M.dts.(latest:v0.00.16(Beta),burning with v1.8.4 burning tool)
 ## Notice
     1.Please refer to the doc in the Doc-Flash-Guide directory for flash burning guidance(If you are using Ubuntu or Mac OS, please use flash tool with 1.8.4 or 1.9.0 and pay attention to selecting the port  and pressing pin to power on).
     2.Please note that the beta version of Coordinatior firmware requires a burning tool of 1.9.0, while others require a burning tool of 1.8.4.

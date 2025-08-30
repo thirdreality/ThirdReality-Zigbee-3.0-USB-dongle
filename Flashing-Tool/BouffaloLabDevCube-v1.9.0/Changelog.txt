@@ -1,0 +1,310 @@
+
+BLDevCube v1.9.0
+=============================
+1. 更新BL602/BL702/BL606P/BL808/BL616的boot2文件至v6.6.2
+2. 更新BL602的mfg至v2.93，修复v2.92内存空间不够无法正常启动BLE Task问题
+3. 更新BL616的mfg至v2.51， 修复BLE Direct Test Mode中Coded PHY Rx测试小概率异常问题
+4. 更新BL702L的mfg，增加A1支持，修复无法控制Singletone输出功率的问题
+5. security_write值强制设置为true（BL602/BL702为false）
+6. 加密加签时secure_boot_en值强制设置为0
+7. iot界面不选择firmware的条件下填写密钥或签名仍然能更新efusedata.bin文件
+8. 修复切换芯片类型后只选择分区表进行烧写时出现的报错
+9. 修复mcu命令行工具使用--build会烧写的问题
+10. 修复使能dbg mode烧写efusedata.bin时，后续efuse无法烧录的问题
+11. 修改工具路径存在空格时的报错提示
+12. BL616增加GD25WQ64E的flash配置
+
+
+BLDevCube v1.8.9
+=============================
+1. 更新BL602/BL702/BL606P/BL808/BL616的boot2文件至v6.6.1
+2. 更新BL602/BL702的eflash loader，增加gt,puya,xtx flash支持
+3. 更新BL602的mfg至v2.92，更新BL702/702L的mfg，增加gt,puya,xtx flash支持
+4. 更新BL616的mfg至v2.50，增加A1支持
+5. 更新BL616的mfg页面，增加802.11AX TB模式发射控件
+6. iot和mcu命令行工具使用--build参数时也生成加密/加签的eflash loader
+7. 更新mfg页面的Open Uart功能
+
+
+BLDevCube v1.8.8
+=============================
+1. 更新BL602/BL702/BL606P/BL808/BL616的boot2文件至v6.6.0
+2. 更新BL602的mfg文件至v2.90，更新BL702/BL702L的mfg文件
+3. 更新BL616的mfg文件至v2.49，输出功率选择Auto模式时执行命令从p-1改为p-99
+4. 增加GT25Q16/GT25Q32/GT25Q64/PY25Q16HB/PY25Q32HB/SK25E032几款flash的配置文件 
+5. 更BL602/BL702的eflash loader
+6. eflash_load_cfg.conf文件增加burn_en, factory_mode, security_write, security_save参数的注释
+7. 增加Linux下的清理脚本clear.sh
+
+
+BLDevCube v1.8.7
+=============================
+1. 更新BL602/BL702/BL606P/BL808/BL616的boot2文件至v6.5.9
+2. 更新BL616的mfg文件至v2.48
+3. console窗口去除BOUFFALO5555字样的串口初始化命令打印
+4. BL616的MFG页面增加802.15.4的测试部分
+5. 修复工具在其它目录下用命令打开时烧写无效的bug
+6. 修复linux下生成的eflash loader文件被占用无法重命名的bug
+7. firmware和mfg的size为4k整数倍时末尾强制加上16字节
+8. iot命令行工具不填写firmware入参时仍能烧写其它img
+9. iot命令行工具不填写boot2入参时不再烧写默认boot2文件
+10. BLDevCube使用手册更新至v1.6
+11. BL616射频性能评估使用手册更新至v1.2 
+
+
+BLDevCube v1.8.6
+=============================
+1. BL616的mfg界面，wifi rx根据选择的20M/40M带宽扩展命令为r:s2或r:s4
+2. 读Flash增加进度条显示
+3. 更新所有芯片的boot2至v6.5.8
+4. 更新BL602的mfg至v2.89
+5. 更新BL616的mfg至v2.39
+6. 更新BL702L的mfg和default cpu clk
+7. iot命令行工具增加dac烧写相关参数
+8. iot命令行工具增加efuse自动校验参数
+9. mcu命令行工具增加加密和加签参数
+10. 命令行工具所有芯片支持字符串形式的公钥私钥输入参数
+11. ota的header添加公钥的sha256值
+12. 烧写已加签加密的芯片，若界面未填写加签加密参数，BL602/702先寻找加密加签过的eflash loader bin
+13. 若烧写加密加签的固件，工具不更新固件的bootheader
+14. BL602/702加密加签烧写时pack包增加加密加签过的eflash loader bin
+15. dts文件增加pwr_limit_2g_ext_ch1~14的解析
+16. 修复ram烧写的报错
+
+
+BLDevCube v1.8.5.101
+=============================
+1. 修改mcu命令行工具的错误
+2. 修改dts文件bluetooth部分的解析错误
+3. 修改界面未勾选加密或加签时burn_en被设为true的错误
+4. 修改加密或加签的芯片重复烧写时界面参数填写不全时的报错
+5. 加密加签后的芯片重复烧写时自动使用加密加签的eflash loader bin
+6. 加密加签的eflash loader bin加入pack包
+7. 更新BL808/BL606P的mfg至v0.59
+8. 更新BL616的mfg至v2.33
+9. 更新BL702L的mfg
+
+
+BLDevCube v1.8.5
+=============================
+1. 更新BL602的mfg至v2.87
+2. 更新BL616的mfg至v2.32
+3. 更新BL602的eflash loader
+4. 更新BL702L的mfg
+5. 更新BL702和BL702L的dts
+6. 修复isp烧写握手失败的错误
+7. 修复发命令后串口连回多个OK时的报错
+8. 修复BL616压缩超时后重新握手失败的错误
+9. 修复efuse烧写校验的错误
+10. 去掉加密相关的log打印
+11. 去掉使用旧版partition table时的告警
+12. 未加签加密时pack包增加efusedata文件
+
+
+bouffalo_mass_production_tool v1.8.5
+=============================
+1. 修复动态模式下非五元组烧录无法烧efuse的bug
+2. 修复单独执行每个下载任务时烧写状态卡住的bug
+3. 添加DAC证书烧写模式
+
+
+BLDevCube v1.8.4.201
+=============================
+1. 更新boot2至v6.5.7
+2. 更新BL602的mfg至v2.85
+3. 更新BL702和702L的mfg
+4. 增加FM的Flash配置
+5. 修复mcu界面无法仅选择私钥文件加签的bug
+6. 修复mcu界面填写的地址和路径前有空格时烧写出错的bug
+7. 修复工具路径中包含空格时烧写报错的bug
+8. 修复第一次烧写security_save值总是为false的错误
+9. 每次烧写时更新固件输出文件夹里的efusedata.bin和efuse_data_mask.bin
+10. 修复iot命令行工具输出文件夹为相对路径时的烧写错误
+11.修复iot命令行工具ota输出文件夹不能创建多层目录的错误
+12.固件生成失败时删除ota文件夹里的相关文件
+13.iot命令行工具增加--read参数
+
+
+BLDevCube v1.8.4
+=============================
+1. 更新boot2至v6.5.6
+2. 更新BL602的mfg至v2.79
+3. 更新BL616的mfg至v2.30
+4. 更新BL808和BL606P的mfg至v0.57
+5. 更新BL702/BL702L的mfg文件
+6. 更新BL702/BL702L的射频性能使用手册至v1.5
+7. 更新BL702的分区表
+8. 更新BL702L的dts文件
+9. 更新BL602的eflash loader bin，增加flash释放掉电功能，修复boot2 isp烧写校验失败的bug
+10. 增加检测flash大小的功能
+11. 增加--efuse参数，不支持单独使用，需要和firmware一起使用
+12. 增加BL602和BL702的isp烧写2ms时延
+13. 增加读擦flash操作时超出flash大小的判断
+14. 减少第一次获取bootinfo的超时时间
+15. 修复BL602和BL702在m1的mac上isp烧写出错的bug
+16. 修复在linux和macos上skip烧写报错的bug
+17. 修复BL616读取psram efuse的bug
+18. 修复在ubuntu18上cklink烧写发生段错误的bug
+19. 修复iot界面启动后删除efuse_bootheader_cfg.ini再烧写时报错的bug
+20. 修复BL702/BL702L的flash界面xtal默认值为空的bug
+21. 修复界面反复勾选加密加签状态出错的bug
+22. 修复选择镜像已存在boot header时boot2镜像偏移错误的bug
+23. x86和arm64架构的mac工具合并为一个版本，并解决jlink口不识别的问题
+24. bflb_iot_tool增加镜像输出文件夹选项，bl616增加字符串形式的私钥和公钥选项
+25. bflb_iot_tool支持只使用参数--sk选择私钥文件，不选择公钥文件
+26. 去掉所有aes key和private key的打印
+
+
+BLDevCube v1.8.3.201
+=============================
+1. 更新boot2版本至v6.5.5
+2. 更新BL602的mfg至v2.75
+
+
+BLDevCube v1.8.3.101
+=============================
+1. 更新BL702/BL702L的mfg文件
+2. 更新BL702的分区表
+3. 增加检测flash大小的功能
+4. BL602和BL702的isp烧写增加2ms时延
+5. 修复ack读取的bug
+
+
+BLDevCube v1.8.3
+=============================
+1. 增加对美的需求的支持
+2. 更新boot2版本至v6.5.4
+3. 更新BL602的mfg至v2.71
+4. 更新BL616的mfg至v2.26
+5. 更新BL808和BL606p的mfg至v0.56
+6. 修改BL602的dts文件的格式错误
+7. BL602的dts文件增加power limit参数
+8. 修改BL702L的XCLK的设置错误
+9. 修改界面的一些错误
+
+
+BLDevCube v1.8.2.101
+=============================
+1. 更新boot2版本至v6.5.2
+2. 更新BL808和BL606p的mfg至v0.56
+3. 修改BL602的dts文件的格式错误
+4. 修改BL702L的XCLK的设置错误
+5. 修改界面的一些错误
+
+
+BLDevCube v1.8.2
+=============================
+1. ota文件添加amazon header
+2. 添加flash配置文件
+3. 更新BL702/BL702L的mfg文件和mfg页面
+4. 更新BL702/BL702L的射频性能使用手册至v1.4
+5. 修改dts文件rf param的解析
+6. 修改dts文件的格式，增强兼容性
+7. 更新了BL602和BL808的dts文件
+8. 支持烧写带header的加密固件
+9. 修复一些界面的小bug
+
+
+BLDevCube v1.8.1
+=============================
+1. 更新boot2版本到v6.5.1，添加dcdc和ldo trim
+2. 更新mfg文件，bl602—>v2.62，bl808/bl606p—>v0.53，bl616—>v2.17
+3. 更新bl602的eflash loader bin
+4. 命令行工具添加log记录选项
+5. 修改linux环境下cklink烧写出现的段错误
+6. 修改device tree解析错误
+7. 修改serial type检测错误
+8. 修改macos系统dark模式下日志窗口的显示bug
+9. 修改macos系统打包成app后主界面无法弹出的bug
+10. uart烧写结束关闭串口前拉低DTR
+11. bl616的mfg页面添加bt测试
+12. bl616的4M partion table添加dts分区
+13. 添加bl616射频性能评估使用手册V1.0
+
+
+BLDevCube v1.8.0.801
+=============================
+1. 添加芯片BL702L/704L
+2. 修改串口log打印的bug
+3. 修改重复读取flash id的bug
+4. 修改配置文件chip_erase_time的默认值，并添加overflow警告
+5. 去除BL808 MCU页面mcu_clk和flash_clk_type的默认值
+6. BL808和BL606p的mfg更新至v0.55
+
+
+BLDevCube v1.8.0.701
+=============================
+1. bl616的mfg文件更新至v2.20
+2. bl616射频性能测试使用手册更新至v1.1
+3. 修改bl616的802.11n的mfg命令
+4. 修改partition table文件格式不正确时的报错
+
+
+BLDevCube v1.8.0.602
+=============================
+1. 更新mfg文件，bl616—>v2.19
+2. bl616的4M partion table添加dts分区
+
+
+BLDevCube v1.8.0.601
+=============================
+1. 更新boot2版本到v6.5.1，添加dcdc和ldo trim
+2. 更新mfg文件，bl602—>v2.62，bl808/bl606p—>v0.53，bl616—>v2.17
+3. 更新bl602的eflash loader bin
+4. 命令行工具添加log记录选项
+5. 修改linux环境下cklink烧写出现的段错误
+6. 修改device tree解析错误
+7. 修改serial type检测错误
+8. 修改macos系统dark模式下日志窗口的显示bug
+9. 修改macos系统打包成app后主界面无法弹出的bug
+10. uart烧写结束关闭串口前拉低DTR
+11. bl616的mfg页面添加bt测试
+12. 添加bl616射频性能评估使用手册V1.0
+
+
+BLDevCube v1.8.0.401
+=============================
+1. boot2更新到v6.5.0，添加dcdc和ldo trim
+2. iot和mcu命令行工具添加log记录选项
+3. 修改linux环境下cklink烧写出现的段错误
+4. 修改device tree解析错误
+5. 修改serial type检测错误
+6. 更新mfg文件 
+
+
+DevCube v1.7.6.007
+=============================
+1. boot2更新到v6.4_rc5，修复没有partition table时不能使用isp的问题
+2. bl606p/808/616添加了puya的flash配置文件
+3. 不同分辨率下自动调整界面字体和布局
+4. 修改串口初始化代码
+
+
+DevCube v1.7.6.006
+=============================
+1. BL616的mfg更新到v2.06
+2. 修正了mfg页面的一些显示错误
+3. 用户手册更新了工具界面的截图
+4. 更新了BL808和BL606P的射频性能评估使用手册
+5. 修改了eflash loader的配置文件
+6. 修改了uart的一些函数
+
+
+DevCube v1.7.6.004
+=============================
+1. 修改老分区表的显示和烧写，与新分区表统一处理
+2. 修改界面显示的一些bug
+3. 修改串口打印的bug
+4. media和romfs选择切换时清空路径输入框的内容和日志窗口的打印
+5. 修复flash界面按钮的显示问题
+
+
+DevCube v1.7.6.003
+=============================
+1. 修改不同操作系统下的字体，正确显示buffalolab字样
+2. 修改日志窗口打印，自动将光标移至最后一行开头
+3. 增加不同芯片下串口波特率的设置，正确显示串口打印
+4. 修改Internal C++ object already deleted的显示错误
+5. 修改bflb_reg_tool在Linux下显示的错误
+6. 修改iot单文件烧写界面显示的错误
+7. 界面隐藏v1版本分区表中无用的分区

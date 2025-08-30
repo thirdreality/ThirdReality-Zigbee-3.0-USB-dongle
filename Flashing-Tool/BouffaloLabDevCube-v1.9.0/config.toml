@@ -1,0 +1,4 @@
+[param]
+chip = "BL702/704/706"
+style = "fusion"
+mode = "normal"

@@ -1,0 +1,27 @@
+[param]
+interface_type = "uart"
+comport_uart = "COM3"
+speed_uart = "2000000"
+speed_jlink = "1000"
+chip_xtal = "32M"
+ota = ""
+version = ""
+aes_key = ""
+aes_iv = ""
+addr = "0x0"
+publickey = ""
+privatekey = ""
+
+[check_box]
+ckb_erase_all = "True"
+partition_download = true
+encrypt = false
+sign = false
+single_download = true
+auto_efuse_verify = false
+
+[input_path]
+img_bin_input = "C:/BL/Zigbee/ThirdReality-Zigbee-3.0-USB-dongle/Image/Coordinator/blz/v1.00.07/R3_706_dongle_v1.00.07/whole_flash_data.bin"
+pt_table_bin_input = ""
+publickey = ""
+privatekey = ""

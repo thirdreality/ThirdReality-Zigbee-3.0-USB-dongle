@@ -1,0 +1,13 @@
+[Image]
+dl_device = "uart"
+dl_comport = "COM3"
+dl_comspeed = "2000000"
+dl_jlinkspeed = "1000"
+dl_chiperase = "False"
+dl_xtal = "32M"
+boot_src = "Flash"
+img_type = "SingleCPU"
+img_addr = "0x2000"
+bootinfo_addr = "0x0"
+img_file = ""
+device_tree = ""

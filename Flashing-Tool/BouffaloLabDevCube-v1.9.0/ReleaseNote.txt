@@ -1,0 +1,1640 @@
+
+= Release 1.9.0 =
+Released: 2024-6-19
+
+== DevCube ==
+Features:
+1. flash cfg add GD25WQ64E for BL616
+
+Changes:
+1. set value of security_write to true
+2. set value of secure_boot_en to 0 when encrypt or sign
+3. update efusedata.bin when not select firmware
+4. raise error if tool path contains spaces
+
+Bug Fixes:
+1. fix program error when select only the partition table
+2. fix error of bl616 dbg mode efuse program
+
+== Boot2 ==
+Features:
+1. fix app retry issue and BL616 A1 ECO issue 
+
+Changes:
+1. update BL602/BL702/BL606P/BL808/BL616 boot2 files to v6.6.2
+
+== MFG ==
+Features:
+1. update BL616 mfg gui，add 802.11ax tb tx section
+
+Changes:
+1. update BL602 mfg to v2.93 to fix ble task issue
+2. update BL702L mfg  to support A1 and fix tx power ctrl issue in cw mode 
+3. update BL616 mfg to v2.51 to fix coded phy rx issue in ble direct test mode
+
+
+= Release 1.8.9 =
+Released: 2024-1-22
+
+== DevCube ==
+Features:
+1. flash cfg add GT25Q16 for BL602/BL702/BL702L
+2. flash cfg add PY25Q1_8_16_32M/XTX8M_16M for BL602/BL702/BL702L/BL616
+3. update BL602/BL702 eflash loader to support flash above
+4. updated the open uart feature on the mfg page
+
+== Boot2 ==
+Features:
+1. BL602/BL702/BL616 support flash above 
+2. support all partition anti-rollback fail always reboot issue
+3. add support APP rollback function
+
+Changes:
+1. update BL602/BL702/BL606P/BL808/BL616 boot2 files to v6.6.1
+
+== MFG ==
+Features:
+1. update BL616 mfg gui，add 802.11ax tb tx section
+
+Changes:
+1. update BL602 mfg to v2.92 to support flash above
+2. update BL702/BL702L mfg  to support flash above
+3. update BL616 mfg to v2.50 to support BL616 A1
+
+
+= Release 1.8.8 =
+Released: 2023-12-15
+
+== DevCube ==
+Features:
+1. flash cfg add GT25Q16/GT25Q32/GT25Q64/PY25Q16HB/PY25Q32HB/SK25E032 
+2. eflash_load_cfg.conf add comments to burn_en, factory_mode, security_write, security_save
+3. update BL602/BL702 eflash loader
+
+== Boot2 ==
+Features:
+1. add watch dog function
+2. add boot2 release version log buffer feature, when boot fail, print the log buffer
+3. BL616 support flash 1560c4/1660c4/1760c4/152085/162085/166125
+
+Changes:
+1. update BL602/BL702/BL606P/BL808/BL616 boot2 files to v6.6.0
+
+== MFG ==
+Changes:
+1. update BL616 mfg to v2.49
+2. update BL602 mfg to v2.90
+3. update BL702/BL702L mfg 
+4. cmd is changed from p-1 to p-99 when auto mode is selected for output power of BL616
+
+
+= Release 1.8.7 =
+Released: 2023-11-22
+
+== DevCube ==
+Features:
+1. add 802.15.4 section for bl616 mfg gui
+2. add 16 bytes to the end of firmware or mfg when its size is an integer multiple of 4k
+
+Changes:
+1. remove "BOUFFALO5555" log printing from console window
+
+Bug Fixes:
+1. fix the bug that the eflash loader file generated in linux is occupied and cannot be renamed
+
+
+== Boot2 ==
+Features:
+1. BL602/BL702 use Sifive 8.3.0 toolchain build
+
+Changes:
+1. update BL602/BL702/BL606P/BL808/BL616 boot2 files to v6.5.9
+
+Bug Fixes:
+1. fix boot2 decompress corner case: image length % 4096 = 0
+
+
+== MFG ==
+Features:
+
+Changes:
+1. update BL616 mfg to v2.48，add 802.15.4 commands
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== iot/mcu cmd tool ==
+Features:
+
+Changes:
+1. enable flash write when firmware is not available
+2. no longer write the default boot2 file when boot2 args is not set
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+1. update BLDevCube User Manual to v1.6
+2. update BL616 RF Test User Manual to v1.2
+
+Bug Fixes:
+
+
+
+= Release 1.8.6 =
+Released: 2023-09-15
+
+== DevCube ==
+Features:
+1. add sha256 of public key to ota header
+2. add progress bar to flash reading
+
+Changes:
+1. do not update bootheader of encrypted/signed firmware
+
+Bug Fixes:
+1. fix bug of ram download
+
+
+== DTS ==
+Features:
+1. add parse of pwr_limit_2g_ext_ch1~14
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+1. BL616 fix instruct pre-fetch bug
+2. BL616 remove pmp
+
+Changes:
+1. update boot2 files of all to v6.5.8
+
+Bug Fixes:
+1. fix all boot2 bor/bod reg write bug
+
+
+== MFG ==
+Features:
+
+Changes:
+1. update BL616 mfg to v2.32, update phyrf to Fix 11b sensitivity loss caused by previous commit
+2. update BL602 mfg to v2.87, send ble PRBS9 instead of single tone
+3. update BL808 mfg to v0.58, Support v1 and v2 command for ble direct test mode
+4. update Bl616 mfg to v2.33, add WL_API_STATUS_INITED  to make rf cfg initialized only once(iptat/icx)
+5. update Bl808 mfg to v0.59, fix SEM cmd
+6. update BL616 mfg to v2.35, add temp,trim,r:le cmd,add bandwidth for cmd r:s
+7. update BL616 mfg to v2.37, update srrc,set bw 20M tx b/g
+8. update BL602 mfg to v2.89, sync with midea ver
+9. update BL616 mfg to v2.39, fix isuue open temp-cap when no dts,fix bug tsen
+
+Bug Fixes:
+1. update mfg files of BL602 to v2.85,fix bl602 read efuse pwr offset bug
+
+
+== eflash_loader ==
+Features:
+1. add encrypted/signed eflash loader bin to pack file if encrypt or sign
+
+Changes:
+
+Bug Fixes:
+
+
+== iot/mcu cmd tool ==
+Features:
+1. iot tool support dac download
+2. iot tool support auto efuse verify
+3. mcu tool support encrypt and sign
+4. all chips support public/private key input of string format
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+
+= Release 1.8.4 =
+Released: 2023-04-20
+
+== DevCube ==
+Features:
+1. add check of flash size
+2. add write efuse func
+3. bflb_iot_tool add --outdir，--pk_str，--sk_str options
+
+Changes:
+1. reduce timeout for first get bootinfo
+2. update xts_mode check function
+3. change gui lib of macos to pyside6
+4. bflb_iot_tool supports --sk only
+
+Bug Fixes:
+1. fix segmentation fault of cklink download in ubuntu18
+2. fix bug of skip download in ubuntu and macos
+
+
+== DTS ==
+Features:
+
+Changes:
+1. update dts files of BL702L
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+1. add check firmware when decompress
+2. BL616 boot2 add feed watch dog for low power
+3. BL616 boot2 add check feed wdt times
+4. all boot2 add ver msg
+5. BL616 add anti-rollback function
+6. BL616 support flash ef401900 and 1920c2
+7. BL616 add FM25W128/GD25WQ128E/XM25QH128C flash cfg
+
+
+Changes:
+1. update boot2 files of all to v6.5.6
+
+Bug Fixes:
+1. fix BL602 and BL702 isp bug
+2. fix BL616 read psram efuse bug
+3. fix BL606P hal_boot2 printf bug
+4. fix BL808/BL606P/BL616 xts mode bug
+5. fix BL808 codesize overflow error
+6. fix boot2 image offset error when the selected image already has boot header
+7. fix all boot2 release ver has print msg
+
+
+== MFG ==
+Features:
+
+Changes:
+1. update mfg files of BL702/BL702L
+2. update mfg files of BL602 to v2.75
+3. update BL808/BL606P mfg to v0.57, add ver msg
+4. update BL616 mfg to v2.30, add FM25W128/GD25WQ128E/XM25QH128C flash cfg and add ver msg
+5. update BL602 mfg to v2.79, add ver msg
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+1. add flash release powerdown
+
+Changes:
+1. update BL602 eflash loader bin
+
+Bug Fixes:
+1. fix boot2 isp mode verify fail issue
+
+
+== Docs ==
+Features:
+
+Changes:
+1. update BL702/BL702L RF Performance Test User Manual to v1.5
+
+Bug Fixes:
+
+
+
+= Release 1.8.3 =
+Released: 2023-02-20
+
+== DevCube ==
+Features:
+1. add support for Midea
+
+Changes:
+
+Bug Fixes:
+1. fix XCLK bug of BL702L
+
+
+== DTS ==
+Features:
+
+Changes:
+1. update dts files of BL602，add power limit
+
+Bug Fixes:
+1. fix bl602 dts syntax error
+
+
+== Boot2 ==
+Features:
+1. update bl602,bl702,bl808,bl606p,bl616,wb03 boot2 to v6.5.6,to add check firmware when decompress
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+
+Changes:
+1. update mfg files of BL808 and BL606P to v0.56
+2. update mfg files of bl616 to v2.26
+3. update mfg files of bl602 to v2.71
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+1. fix partition read error of BL702L
+
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+= Release 1.8.2 =
+Released: 2023-02-01
+
+== DevCube ==
+Features:
+1. add amazon header for ota file
+2. img already have bootheader issue
+
+Changes:
+1. modify mfg pages of BL702 and BL702L
+2. modify dts rf param parsing
+
+Bug Fixes:
+
+
+== DTS ==
+Features:
+
+Changes:
+1. update dts files of BL602 and BL808
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+
+Changes:
+1. update mfg files of BL702 and BL702L
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+1. update BL702/BL702L RF Performance Test User Manual to v1.4
+
+Bug Fixes:
+
+
+
+===========================================================
+
+= Release 1.8.1 =
+Released: 2022-12-01
+
+== DevCube ==
+Features:
+1. add BL702L mfg page
+
+Changes:
+1. modify partition tables of BL808
+
+Bug Fixes:
+1. fix bug of BL702L ram download
+2. fix bug of BL628 image create
+
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+1. fix conflict of skip and erase options
+
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+
+===========================================================
+
+= Release 1.8.0.801 =
+Released: 2022-11-17
+
+== DevCube ==
+Features:
+1. add BL702L/704L
+
+Changes:
+1. modify chip_erase_time from 200000 to 33000
+2. remove default values of mcu_clk & flash_clk_type in BL808 mcu page
+
+Bug Fixes:
+1. fix bug of flash id read
+2. fix bug of log print
+
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+1.update bl808 mfg to v0.55
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+
+===========================================================
+
+= Release 1.8.0.701 =
+Released: 2022-11-7
+
+== DevCube ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== DTS ==
+Features:
+
+Changes:
+1. add dts section to 4M partion table of  bl616
+
+Bug Fixes:
+
+
+== Boot2 ==
+boot2_v6.5.1
+Features:
+1. add dcdc and ldo trim
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+1.update bl602 mfg to v2.62
+2.update bl616 mfg to v2.20
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+1.update 《BL616射频性能评估使用手册》 to v1.1
+
+Bug Fixes:
+
+
+===========================================================
+= Release 1.8.401 =
+Released: 2022-10-12
+
+== DevCube ==
+Features:
+1. iot & mcu tool add log record option
+
+Changes:
+
+Bug Fixes:
+1. fix bug of device tree parse
+2. fix bug of serial type check
+3. fix bug of img create in mcu tool
+4. fix bug of segmentation fault in cklink download
+
+
+== DTS ==
+Features:
+
+Changes:
+1.  create rfpa img even if dts config size=0
+
+Bug Fixes:
+
+
+== Boot2 ==
+boot2_v6.5.0
+Features:
+1. add dcdc and ldo trim
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+1.update bl602 mfg to v2.58
+2.update bl808 mfg to v0.53
+3.update bl606p mfg to v0.53
+4.update bl616 mfg to v2.13
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+1. udpate 602 eflash loader bin
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+1.add doc 《BL616射频性能评估使用手册V1.0》
+
+Changes:
+
+Bug Fixes:
+
+
+===========================================================
+= Release 1.8.0.301 =
+Released: 2022-09-23
+
+== DevCube ==
+Features:
+
+Changes:
+
+Bug Fixes:
+1. fix bug of error code display
+2. fix bug of log display
+3. modify bl616 rf mfg gui
+4. fix mcu efuse create bug
+
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+===========================================================
+
+= Release 1.8.0.201 =
+Released: 2022-09-14
+
+== DevCube ==
+Features:
+1. img create don't add bootinfo when img bin have already has bootinfo data
+2. efuse data encrypt and save
+3. add start & end address options for iot tool
+
+Changes:
+
+
+Bug Fixes:
+1. show warning if eflash_loader_cfg.conf is missing when chip selection
+2. fix bl616 flash2 bug
+3. fix bl616 rf mfg gui bug
+
+
+== DTS ==
+Features:
+1. add parsing for bl616 rf param
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+boot2_v6.4_rc6
+Features:
+
+Changes:
+
+Bug Fixes:
+1. add timeout for PSRAM API and add dcdc18_pulldown_aon to solve xiaojudeng issue
+
+
+== MFG ==
+bl808_mfg_v0.52/bl606p_mfg_v0.52
+Features:
+1. support for p-1 cmd in ble
+
+Changes:
+
+Bug Fixes:
+1. limit ram size to 176K,EM size is 48K
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+===========================================================
+
+= Release 1.7.6.007 =
+Released: 2022-08-18
+
+== DevCube ==
+Features:
+1. 606p/808/616 add puya flash cfg
+2. change font-size on different resolutions
+
+Changes:
+1.  modify CliInfUart to support different serial types
+2.  skip mode can not set flash chiperase
+
+Bug Fixes:
+1. isp mode add "\r\n" before reboot cmd to filter glitch from uart tools
+
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+boot2_v6.4_rc5
+Features:
+
+Changes:
+
+Bug Fixes:
+1.fix isp when no partition
+
+
+== MFG ==
+Changes:
+
+Bug Fixes:
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Docs ==
+Features:
+
+Changes:
+
+
+Bug Fixes:
+
+
+===========================================================
+= Release 1.7.6.006 =
+Released: 2022-08-12
+
+== DevCube ==
+Features:
+1. skip mode can set from eflash loader cfg file
+
+Changes:
+1. mofidy uart functions
+
+Bug Fixes:
+1. fix gui bugs of mfg
+
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== MFG ==
+bl616_mfg_v2.06
+Features:
+1. add O cmd,for flash test
+2. add cmd r:i,support for ATE
+3. add cmd ATSC
+4. update rfparam to RFPARAM_APPLY_ALL
+5. spilt bl616 and bl616w
+6. store cci ret
+7. rename all bl618 to bl616
+Changes:
+
+Bug Fixes:
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+== Docs ==
+Features:
+
+Changes:
+1. update doc bl808/bl606p <射频性能评估使用手册>
+2. update user guide of BLDevCube
+
+Bug Fixes:
+
+
+===========================================================
+= Release 1.7.6.005 =
+Released: 2022-08-04
+
+== DevCube ==
+Features:
+
+Changes:
+1. change partition table of bl602 & bl606p
+2. change font size
+3. isp mode speed set from cfg file
+
+Bug Fixes:
+1. fix bug of boot2 security
+2. fix bug of uart
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+1. fix Power offset comment of base for bl616/bl606p/bl808. not affect function,just comment is wrong
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+== MFG ==
+mfg_v2.57
+Features:
+1. add cmd V2
+2. put almost all code in ram
+
+Changes:
+1. resume debug log ATSC
+2. change MAC adaress to unicast address
+3. update uincast command, make unicast works
+
+Bug Fixes:
+1. fix vectors not init bug
+2. fix dsss_freqoff
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+===========================================================
+= Release 1.7.6.004 =
+Released: 2022-07-28
+
+== DevCube ==
+Features:
+
+Changes:
+1. modify iot download of old partition table
+
+Bug Fixes:
+1. fix bug of uart log print
+2. fix some bugs of gui
+
+== DTS ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== Boot2 ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+== MFG ==
+mfg_v2.57
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+===========================================================
+= Release 1.7.6.003 =
+Released: 2022-07-26
+
+== DevCube ==
+Features:
+
+Changes:
+1. modify font-family in different operating systems
+2. modify log display，move cursor to the start of last line
+3. add baudrate setting of different chips
+
+Bug Fixes:
+1. fix bug of bflb_reg_tool in Linux
+2. fix bug of single download  in iot download
+3. fix bug of Internal C++ object already deleted
+
+===========================================================
+= Release 1.7.6.002 =
+Released: 2022-07-20
+
+== DevCube ==
+Features:
+
+Changes:
+
+Bug Fixes:
+1. fix bug of chip erase option in iot download
+2. fix bug of file choice  in iot download
+3. fix bug of bl616 mcu download
+
+== Boot2 ==
+boot2_v6.4_rc4
+Features:
+1. unify bl602/bl702 to bl_mcu_sdk trunk
+2. all chip support encrypt/sign/isp
+
+Changes:
+
+Bug Fixes:
+
+== MFG ==
+616/616_W mfg_v2.05
+Features:
+1. inital version
+
+Changes:
+
+Bug Fixes:
+
+606p mfg_v0.44
+Features:
+1. add call rf_pri_set_bz_channel_pwr_comp
+
+Changes:
+
+Bug Fixes:
+
+
+== eflash_loader ==
+Features:
+1. 616_w add isp mode
+
+Changes:
+1. clear buf after clock set
+
+Bug Fixes:
+
+== Docs ==
+Features:
+
+Changes:
+
+Bug Fixes:
+
+
+===========================================================
+
+= Release 1.7.6 =
+Released: 2022-07-15
+
+== Features ==
+add bt test for rf mfg
+
+== Changes ==
+change gui from wxpython to pyside2
+update boot2 to v6.4_rc3
+update bl702 eflash loader bin, add GD flash cfg
+update bl602 eflash loader bin, fix isp mode program boot2 bin verify fail bug
+
+== Bug Fixes ==
+fix mcu bind bug
+fix bl702 isp shakehand bug
+fix 616/616_W/602/702/ encrypt bug
+fix 616_W launch time too long bug
+
+
+ = Release 1.7.4 =
+Released: 2022-06-22
+
+== Features ==
+增加BL602和BL606P的isp下载功能
+增加动态iot烧写页面
+
+== Changes ==
+702烧写和启动默认使用0.5T clock delay
+更新BL602和BL606P的boot2
+
+== Bug Fixes ==
+修复压缩烧写超时的问题
+
+
+ = Release 1.7.1 =
+Released: 2022-04-13
+
+== Features ==
+添加对BL606P和BL808烧写的支持
+添加Linux下cklink烧写的支持
+添加cklink和openocd设备SN号的显示和指定
+
+== Changes ==
+修改utils目录下flash-conf文件夹名为flash
+
+== Bug Fixes ==
+修复界面显示和配置保存的一些bug
+
+
+= Release 1.6.8 =
+Released: 2022-02-16
+
+== Features ==
+rx timeout设置匹配大文件烧写
+
+== Changes ==
+702 flash默认使用normal spi mode
+genromfs命令添加对齐参数-a 64
+
+== Bug Fixes ==
+修复BL702 boot2的bug
+修复chip ack unknown的bug
+修复在macOS下选择框无法正常显示的bug
+修复在M1的macOS下genromfs命令报错的bug
+修复在M1的macOS下在RAM中烧写报错的bug
+
+
+= Release 1.6.7 =
+Released: 2022-01-12
+
+== Bug Fixes ==
+修复rfpa文件烧写后无法运行的bug
+修复bl602下cklink烧写报错的bug
+
+
+= Release 1.6.6 =
+Released: 2022-01-05
+
+== Features ==
+windows版本增加cklink烧写接口
+
+== Changes ==
+修改flash erase逻辑，防止erase过程中消耗过多时间
+ubuntu版本主文件大小压缩到100MB以内
+更新602/702的boot2和eflash loader bin
+更新602/702支持的flash类型列表
+更新602的mfg文件
+
+== Bug Fixes ==
+修复iap升级时设备枚举一直报错的问题
+修复ubuntu下切换芯片时界面崩溃的问题
+修复ubuntu下usb烧写出错的问题
+
+
+= Release 1.6.5 =
+Released: 2021-11-10
+
+== Changes ==
+更新BL702 MFG界面和固件
+已经烧写过一次后在芯片没有复位还在运行eflash loader时，工具可在芯片不做任何动作的情况下继续烧写
+
+== Bug Fixes ==
+修复没有串口时无法生成image的bug
+修复波特率填写非数字时烧写报错的bug
+修复single和iap download的bug
+修复jlink和openocd烧写出错的bug
+修复BL602/702在使用加密功能时，efuse create会将key slot3同时读写保护的bug
+
+
+= Release 1.6.4 =
+Released: 2021-10-13
+
+== Features ==
+增加固件是否适配分区大小的检查
+
+== Changes ==
+BL602的MFG固件修改为2.43，支持efuse power offset ate的位置修改
+修改702的eflash loader，支持根据flash efuse bit去烧录flash而不是自动scan，解决烧录过程中某些引脚高电平问题，同时支持指定引脚烧录
+
+== Bug Fixes ==
+修改FW_OTA.bin.hash生成的错误
+
+
+= Release 1.6.3 =
+Released: 2021-09-27
+
+== Features ==
+增加usb iap download功能
+
+
+= Release 1.6.2 =
+Released: 2021-09-03
+
+== Bug Fixes ==
+修复路径带空格的单文件烧写报错的bug
+
+
+= Release 1.6.1 =
+Released: 2021-09-01
+
+== Features ==
+boot2 bin文件增加flash配置，自动适配flash类型
+eflash loader bin文件增加flash配置
+
+== Changes ==
+默认flash配置不再从bootheader中获取，而是在boot2中做适配，bootheader中的flash clock delay配置任然有效
+boot2 iap烧写时，不再烧写efuse，boot2 iap烧写时，增大握手buff
+文件对话框能自动记录上次打开的目录
+
+== Bug Fixes ==
+修复烧写过程中进度条出现的bug
+修复MCU页面镜像类型选RAW时报错的bug
+
+
+= Release 1.5.3 =
+Released: 2021-06-04
+
+== Features ==
+MCU模式增加IAP页面
+增加使用702作为usb转串口实现串口下载功能
+
+== Bug Fixes ==
+修复MacOS下无法显示串口的bug
+修复dts文件解析字段长度被写死的bug
+修复openocd无法自动关闭的bug
+
+== Changes ==
+使能IOT界面的Factory Params Checkbox
+
+
+= Release 1.5.2 =
+Released: 2021-04-15
+
+== Features ==
+增加Save Image按钮
+增加File Serial协议
+
+== Changes ==
+串口显示窗口对PROG和SDIO串口进行标注
+修改位置MCU界面Bind按钮位置
+各芯片文件夹放至在chips目录下
+各配置和程序文件放至utils目录下
+切换页面时自动关闭串口监听
+
+
+= Release 1.5.1 =
+Released: 2021-03-31
+
+== Changes ==
+IOT页面删除board选择，增加dts文件选择
+更新BL602的boot2
+
+== Bug Fixes ==
+修复出现特殊字符串日志保存异常的bug
+修复read flash出错但提示成功的bug
+
+
+= Release 1.5.0 =
+Released: 2021-03-16
+
+== Features ==
+镜像生成增加RF的TLV信息
+IOT页面增加ECC签名
+
+== Changes ==
+COM Port下拉菜单自动屏蔽虚拟串口
+IOT生成的bin文件改放至img_create_iot文件夹下
+MCU生成的bin文件改放至img_create_mcu文件夹下
+修改BL602和BL702的RF MFG
+
+== Bug Fixes ==
+修复烧写文件路径带空格时报错的bug
+修复单文件烧写报错的bug
+修复jlink烧写报错的bug
+
+
+= Release 1.4.8 =
+Released: 2021-01-26
+
+== Features ==
+BL702支持加密烧写和OpenOCD烧写
+
+== Changes ==
+命令行选项用argparse替换getopt
+加密库使用pycryptodome和cryptoplus
+
+
+= Release 1.4.7 =
+Released: 2020-12-21
+
+== Features ==
+BL702增加MFG工具
+eflash loader增加日志记录
+
+== Changes ==
+美化界面显示
+用yapf格式化代码
+将修改后的fdt源码集成到lib里
+更新img_create_cfg.conf文件
+更新BL702的相关文件
+
+== Bug Fixes ==
+修复openocd的bug
+修复打开uart的bug
+修复标题栏图标不显示的bug
+修复界面最大化和恢复时进度条显示的bug
+
+
+= Release 1.4.6 =
+Released: 2020-11-12
+
+== Changes ==
+修改校验和计算方法，提高烧写速度  #de63f77
+减少img_load_process中的sleep时间  #9196b04
+pack打包文件增加version.txt  #4e13639
+
+== Bug Fixes ==
+修改读取dts文件时报错的bug  #3a234cf
+修复在MacOS下界面选项无法显示的bug  #ee222b1
+
+
+= Release 1.4.5 =
+Released: 2020-11-05
+
+== Changes ==
+用csv库替代pandas
+擦写超时从10000ms改为15000ms
+eflash_loader_cfg.ini从conf拷贝时增加判断
+eflash_loader.bin增加USB下载功能
+修改pyinstaller打包脚本
+
+== Bug Fixes ==
+修复Bouffalo2Other.py不能转换mfg目录下的文件名的问题
+
+
+= Release 1.4.4 =
+Released: 2020-10-29
+
+== Features ==
+IOT增加efuse key自动加载
+
+== Changes ==
+更新mfg文件
+更新eflash_loader文件
+
+== Bug Fixes ==
+修复转换TG版本时不能转换eflash_loader_cfg.conf中敏感信息的bug
+
+
+= Release 1.4.3 =
+Released: 2020-10-22
+
+== Changes ==
+适配客户A定制版本，增加MCU界面
+MFG页面的power增加10dbm选项
+帮助菜单增加使用说明文档的链接
+更新BL702的eflash_loader.bin
+更新BL602的flash时钟类型
+
+== Bug Fixes ==
+修复在MacOS下烧写文件打包的bug
+
+
+= Release 1.4.2 =
+Released: 2020-10-14
+
+== Changes ==
+更新MFG固件
+更新eflash loader
+更新RF性能测试用户手册，增加产测说明
+
+== Features ==
+增加分区表overlay的判断
+添加烧写文件打包功能
+添加使用说明手册
+
+
+= Release 1.4.1 =
+Released: 2020-09-25
+
+== Changes ==
+将修改后的toml源码集成到lib里
+修改定制版本的替换关键字
+
+== Features ==
+添加工具自动转换成定制版本的功能
+
+== Bug Fixes ==
+修复日志搜索框重复打开的bug
+
+
+= Release 1.4.0 =
+Released: 2020-09-16
+
+== Changes ==
+更新BL702文件
+
+== Features ==
+添加日志搜索功能
+
+== Bug Fixes ==
+修复toml解析路径的bug
+
+
+= Release 1.3.8 =
+Released: 2020-09-07
+
+== Changes ==
+更新mfg文件
+用urllib替换requests
+用pyaes替换Cryptodome
+打包时用onedir模式替换onefile模式
+将configobj集成到lib里
+
+== Features ==
+支持BL702芯片
+
+== Bug Fixes ==
+修复工具放大缩小时进度条显示问题
+
+
+= Release 1.3.7 =
+Released: 2020-08-14
+
+== Changes ==
+log日志显示页面增加时间显示
+log日志显示页面打印语句标准化
+更新boot2和mfg partition
+eflash_loader增加xtal type选择
+生成镜像时为阿里增加Hash
+BL602的flash速度减少为40M
+
+== Features ==
+增加BL602烧写文件生成脚本
+
+== Bug Fixes ==
+修复Open Uart按钮打开串口后部分字符不能转换问题
+修复MCU页面镜像地址错误仍然提示Create成功并继续烧写的错误
+
+
+= Release 1.3.6 =
+Released: 2020-08-05
+
+== Changes ==
+BL602/604和BL562/564的MCU界面Flash默认速度改为48M
+删除对crc_ignore和hash_ignore的修改
+更新MCU Flash Clock设置
+更新BL602的eflash_loader.bin
+更新eflash_loader_cfg.conf
+
+== Features ==
+增加自动/手动新版本并下载和更新的功能，提示框显示更新内容
+MCU增加Flash Clock自动选择
+MCU增加bind bootinfo/img函数
+
+== Bug Fixes ==
+修改选择BL60X和BL56X后Simple Flasher页面Xtal选项默认值为空的问题
+修改Simple Flasher页面选择Enable后Factory Params不变灰的问题
+修改eflash_loader的app_path问题
+
+
+= Release 1.3.5 =
+Released: 2020-07-27
+
+== Changes ==
+更新error code函数
+
+== Features ==
+增加日志窗口可浮动停靠功能
+eflash loader增加auto download函数
+
+== Bug Fixes ==
+修复Image页面点击Clear按钮后进度条不清理的问题
+修复bl60x生成镜像报错和烧写崩溃的bug
+修复bl602镜像类型选择BLSP_Boot2时报错的bug
+修复jlink下载报错的bug
+
+
+= Release 1.3.4 =
+Released: 2020-07-20
+
+== Changes ==
+Image页面Advanced选项修改成折叠面板的形式
+更新bl602 eflash_loader.bin
+更新eflash loader error code
+选择烧写文件时默认处于上一次打开的文件夹
+
+== Features ==
+Flash Utils页面和Image页面增加Open URAT按钮，增加监听串口线程
+增加日志文件保存，在log文件夹内自动生成
+增加日志窗口拖放功能
+增加日志窗口可浮动停靠功能
+
+== Bug Fixes ==
+修复在工具内切换芯片时tab页面闪烁的bug
+修复flash erase选项的bug
+修复下位机发送大量数据时工具卡死的问题
+修复在Linux下运行出错的问题
+修复bl60x下simple_flasher镜像生成的错误
+修复Image页面点击Clear按钮后进度条不清理的问题
+
+
+= Release 1.3.3 =
+Released: 2020-07-10
+
+== Changes ==
+修改core内py文件文件名，将前缀bl60x改为bflb
+修改工具名称为Bouffalo Lab Dev Cube，主文件名为BLDevCube
+Partition页面根据芯片类型显示不同配置
+Image页面Flash Clock选项HCLK改为BCLK
+
+== Features ==
+Flash Utils页面增加Erase Flash和Whole Chip选项
+RF MFG页面BLE部分Power选项增加Auto选项
+
+== Bug Fixes ==
+修复Simple Flasher页面点击Board下拉框后不显示全路径的问题
+修复bl60x芯片Image页面PLL无默认值的问题
+修复切换芯片类型后MCU默认不在Image页面的问题
+修复Simple Flasher页面AES加密没有对输入IV值检测的问题
+修复Efuse Key页面Create按钮无效的问题
+
+
+= Release 1.3.2 =
+Released: 2020-07-06
+
+== Changes ==
+修改Simple Flasher页面布局和进度条信息显示功能
+修改MCU下Image页面进度条信息显示功能
+修改MCU下Image页面的PLL选项默认值为160M
+
+== Features ==
+增加Simple Flasher页面下Factory Params后显示dts文件全路径功能
+
+== Bug Fixes ==
+修复version.txt乱码后工具出错无法打开的问题
+修复切换芯片类型后561芯片显示页面不准确的问题
+
+
+= Release 1.3.1 =
+Released: 2020-07-01
+
+== Changes ==
+重构gui的代码
+移除build and create的按钮
+移除flash手动选择
+将pyinstaller脚本移动到release文件夹
+将CI-Test文件夹改名为citest
+
+== Features ==
+增加flash自动检测
+增加ci test
+
+== Bug Fixes ==
+修复command line mode下的bug
+
+
+= Release 1.3.0 =
+Released: 2020-06-28
+
+== Changes ==
+change from bl602a0 to bl602a1
+函数芯片入参分为芯片名称(chipname)和芯片类型(chiptype)
+原docs文件夹更名为docfile
+update uart/sdio boot speed
+
+== Features ==
+增加RF MFG页面中BLE模块的power选项，并设置单位和默认值
+
+== Bug Fixes ==
+修复MCU界面Interface选择jlink时COM Port不变灰的bug
+修复efuse data create失败的bug
+修复boot from uart/sdio失败的bug
+修复img create失败的bug
+
+
+
+
+
+
+
