@@ -59,23 +59,103 @@ Your contributions and visibility will help bring BLZ into the official ecosyste
 
 ## How To
 ---
-### Home Assistant
 
-#### 1. HA OS
-Directly use the dongle with **Home Assistant OS** and the overrided ZHA integration. 
-- See [haos_custom_zha_blz](<https://github.com/bouffalolab/haos_custom_zha_blz/tree/main>) for detail.
+There are **5 ways** to use the BLZ dongle, depending on your setup:
 
-#### 2. HA Core
-Use the dongle in a **Home Assistant Core** environment.
-- Setup documentation: [Home_Assistant_Core_BLZ_Radios_Integration_Guide](<https://github.com/thirdreality/ThirdReality-Zigbee-3.0-USB-dongle/blob/40b5c9430e3dfad4d3d63e9597c31424e87d91e9/Howto/Home_Assistant_Core_BLZ_Radios_Integration_Guide.pdf>)  
+### Home Assistant (ZHA)
 
-#### 3. Zigbee2MQTT in Home Assistant
-When running firmware **v1.0 and above** (BLZ protocol), Zigbee2MQTT can be added as an add-on in HA.  
-- Setup documentation: [Using Zigbee2MQTT in HA with BLZ Guide](<https://github.com/thirdreality/ThirdReality-Zigbee-3.0-USB-dongle/blob/40b5c9430e3dfad4d3d63e9597c31424e87d91e9/Howto/Zigbee2MQTT_BLZ_HA_Guide.pdf>)  
+#### 1. HAOS / HA Supervised — via HACS (Recommended)
+
+The easiest way. Install the custom ZHA component that adds BLZ radio support.
+
+1. In Home Assistant, go to **HACS** > **Integrations**
+2. Click three-dot menu > **Custom repositories**
+3. Add `https://github.com/bouffalolab/haos_custom_zha_blz` with category **Integration**
+4. Search for **ZHA with BLZ Radio Support** and click **Install**
+5. Restart Home Assistant
+6. Go to **Settings** > **Devices & Services** > **Add Integration** > **ZHA**
+7. Select the BLZ dongle and choose **BLZ** as the radio type
+
+- Repository: [bouffalolab/haos_custom_zha_blz](https://github.com/bouffalolab/haos_custom_zha_blz)
+
+#### 2. HAOS / HA Supervised — Manual SSH Install
+
+```bash
+ssh -p 22 <user>@<HA_IP>
+mkdir -p /config/custom_components && cd /config
+git clone --depth 1 https://github.com/bouffalolab/haos_custom_zha_blz.git _tmp
+cp -r _tmp/custom_components/zha custom_components/
+rm -rf _tmp
+ha core restart
+```
+
+#### 3. HA Core (Python venv)
+
+Install zigpy-blz and the BLZ-patched ZHA library in your Home Assistant Core virtual environment:
+
+```bash
+source /path/to/ha-venv/bin/activate
+pip install "zha @ git+https://github.com/bouffalolab/zha.git@feat/blz"
+pip install "zigpy-blz @ git+https://github.com/bouffalolab/zigpy-blz.git@main"
+```
+
+Then copy the custom ZHA component into your HA config:
+```bash
+cd /path/to/ha-config
+git clone --depth 1 https://github.com/bouffalolab/haos_custom_zha_blz.git _tmp
+cp -r _tmp/custom_components/zha custom_components/
+rm -rf _tmp
+```
+
+- Guide: [Home_Assistant_Core_BLZ_Radios_Integration_Guide](Howto/Home_Assistant_Core_BLZ_Radios_Integration_Guide.pdf)
 
 ### Zigbee2MQTT
-For standalone use outside HA, the dongle (firmware ≥ v1.0, BLZ protocol) can be connected directly to Zigbee2MQTT.  
-- Follow the setup guide: [Building and Configuring Zigbee2mqtt with BLZ Protocol Support](<https://github.com/thirdreality/ThirdReality-Zigbee-3.0-USB-dongle/blob/40b5c9430e3dfad4d3d63e9597c31424e87d91e9/Howto/Building%20and%20Configuring%20Zigbee2mqtt%20with%20BLZ%20Protocol%20Support.pdf>)  
+
+#### 4. HAOS Add-on (Z2M in Home Assistant)
+
+Install Zigbee2MQTT as a Home Assistant add-on with BLZ support:
+
+1. Go to **Settings** > **Add-ons** > **Add-on Store** (three-dot menu)
+2. Click **Repositories** and add:
+   ```
+   https://github.com/fangzheli/hassio-zigbee2mqtt
+   ```
+3. Refresh, find **Zigbee2MQTT** and click **Install**
+4. In the add-on Configuration, set:
+   - Serial port: `/dev/ttyUSB0` (or your dongle path)
+   - Adapter: `blz`
+   - Baud rate: `2000000`
+5. Start the add-on
+
+- Repository: [fangzheli/hassio-zigbee2mqtt](https://github.com/fangzheli/hassio-zigbee2mqtt)
+
+#### 5a. Docker (Standalone Z2M)
+
+```bash
+docker run -d --name zigbee2mqtt-blz \
+  --restart=unless-stopped \
+  --device=/dev/ttyUSB0:/dev/ttyUSB0 \
+  -p 8099:8099 \
+  -v $(pwd)/z2m-data:/app/data \
+  -e TZ=UTC \
+  ghcr.io/fangzheli/zigbee2mqtt:latest-dev
+```
+
+Create `z2m-data/configuration.yaml` with adapter `blz` and baudrate `2000000`.
+
+#### 5b. From Source (Standalone Z2M)
+
+```bash
+git clone -b feat/blz https://github.com/fangzheli/zigbee-herdsman.git
+cd zigbee-herdsman && pnpm install && cd ..
+
+git clone -b feat/blz-local-dev https://github.com/fangzheli/zigbee2mqtt.git
+cd zigbee2mqtt && pnpm install && pnpm start
+```
+
+Configure `data/configuration.yaml` with adapter `blz` and baudrate `2000000`.
+
+- Guide: [Building and Configuring Z2M with BLZ](Howto/Building%20and%20Configuring%20Zigbee2mqtt%20with%20BLZ%20Protocol%20Support.pdf)
 
 ## Buy
 ---
